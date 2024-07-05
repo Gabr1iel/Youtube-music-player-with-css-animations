@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="algone-msuic-player.css" rel="stylesheet" type="text/css">
+    <head></head>
+    <title>Algone music</title>
+</head>
+<body>
+    <div id="main">
+        <div id="first-bg" class="bg"></div>
+        <div id="loading-wrapper">
+            <div id="loading">
+                <span>L</span>
+                <span>O</span>
+                <span>A</span>
+                <span>D</span>
+                <span>I</span>
+                <span>N</span>
+                <span>G</span>
+            </div>
+        </div>
+    </div>
+    <div id="second-bg" class="bg"></div>
+    <div id="main-site">
+        <div class="bg" id="main-left-bg">
+            <div id="header">
+                <p>Algone</p>
+                <div id="logo-wrapper"><span style="width: 15px; height: 15px; background-color: black; margin: 1px;"></span><span style="width: 15px; height: 35px; background-color: black; margin: 1px;"></span><div style="width: 15px; display: flex; flex-direction: column; margin-bottom: 17px; padding-bottom: 0;"><span style="width: 15px; height: 15px; background-color: black; margin: 1px;"></span><span style="width: 15px; height: 15px; background-color: black; margin: 1px;"></span></div></div>
+            </div>
+            <p id="slogan">The <span style="color: #F37925;">#1</span><br> for modern music.</p>
+            <p>An ever-growing catalogue of high-quality modern music, sourced by talented music creators from all over the world.</p>
+        </div>
+        <div class="bg" id="main-right-bg">
+            <div id="key-wrapper">
+                <div class="key-animation-wrapper" style="animation-delay: 2.3s;"><div class="key-player" data-video-id="S3wH92v3A3k" style="background-color: #91C3CE;"><span class="key-button">M</span></div></div>
+                <div class="key-animation-wrapper" style="animation-delay: 2.2s;"><div class="key-player" data-video-id="igM76Z5dITw" style="background-color: #FAC670;"><span class="key-button">B</span></div></div>
+                <div class="key-animation-wrapper" style="animation-delay: 2.1s;"><div class="key-player" data-video-id="ABfT0jtWULM" style="background-color: #F5E1BE;"><span class="key-button">A</span></div></div>
+                <div class="key-animation-wrapper" style="animation-delay: 2s;"><div class="key-player" data-video-id="2op-9DGduGE" style="background-color: #F37925;"><span class="key-button">I</span></div></div>
+                <div class="key-animation-wrapper" style="animation-delay: 1.9s;"><div class="key-player" data-video-id="AP3PXMRo4DI" style="background-color: #C0A8E6;"><span class="key-button">C</span></div></div>
+                <div id="secondary-keys">
+                    <div class="key-animation-wrapper-second" style="animation-delay: 2.05s;"><div class="key-player" data-video-id="Dcc4SSDpIhI" id="secondary-key"><span style="background-color: rgba(236, 236, 236, 0.1);" class="key-button">U</span></div></div>
+                    <div class="key-animation-wrapper-second" style="animation-delay: 2.15s;"><div class="key-player" data-video-id="KG7nWYNp_r0" id="secondary-key"><span style="background-color: rgba(236, 236, 236, 0.1);" class="key-button">S</span></div></div>
+                </div>
+            </div>
+        </div>
+        <div id="video-container">
+            <div id="youtube-player"></div>
+        </div>
+    </div>
+    <script>
+        var tag = document.createElement('script');
+
+        tag.src="https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {height: '0', width: '0', playerVars: {'controls': 0, 'showinfo': 0, 'modestbranding': 1}, events: {'onReady': onPlayerReady, 'onError' : onPlayerError}});
+        }
+
+        function onPlayerReady(event) {
+            document.querySelectorAll('.key-player').forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentVideoData = player.getVideoData();
+                    const currentVideoId = currentVideoData.video_id;
+                    const videoId = this.getAttribute('data-video-id');
+                    if (videoId != currentVideoId) {
+                        player.loadVideoById(videoId);
+                        player.setVolume(10);
+                        player.playVideo();
+                    } else if(videoId === currentVideoId) {
+                        if (player.getPlayerState() === YT.PlayerState.PAUSED) {
+                        player.playVideo();
+                        } else {
+                            player.pauseVideo();
+                        }
+                    } else {
+                        console.error('No video ID provided.');
+                    }
+                });
+            });
+        }
+        function onPlayerError(event) {
+            console.error('Error loading YouTube video:', event.data);
+        }
+    </script>
+</body>
+</html>

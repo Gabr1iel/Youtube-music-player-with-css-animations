@@ -1,0 +1,202 @@
+body {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow: hidden;
+}
+#main {
+    display: flex;
+    flex-direction: row;
+}
+#main-site {
+    transform: translateY(-100%);
+    display: flex;
+    flex-direction: row;
+
+    animation: background-swipe-3 0.6s 1.8s ease forwards;
+}
+
+.bg {
+    width: 50%; 
+    height: 100vh;
+}
+#first-bg {
+    transform: translateY(100%);
+    background-color: #C0A8E6;
+
+    animation: background-swipe-1 0.6s 0.1s ease forwards, background-swipe-2 0.6s 1s ease forwards;
+}
+#second-bg {
+    transform: translateY(100%);
+    background-color: #F5E1BE;
+
+    animation: background-swipe-2 0.6s 1s ease forwards, background-swipe-3 0.6s 1.8s ease forwards;
+}
+#main-left-bg {
+    background-color: #FAC670;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#main-left-bg p:last-child{
+    font-size: 22px;
+    font-weight: bolder;
+    width: 35%;
+    margin: 25px;
+}
+#main-right-bg {
+ background-color: #1B1A19;
+}
+
+#loading-wrapper {
+    width: fit-content;
+    width: 50%;
+    height: 100px;
+}
+#loading {
+    margin-left: 25px;
+    margin-top: 15px;
+    font-size: 70px;
+    font-weight: bold;
+    overflow: hidden; 
+}
+#loading span {
+    display: inline-block;
+    transform: translateY(100%);
+}
+#loading span:nth-child(1) {
+    animation: loading-first 0.2s ease forwards, loading-end 0.2s 1.35s ease forwards;
+}
+#loading span:nth-child(2) {
+    animation: loading-first 0.2s 0.1s ease forwards, loading-end 0.2s 1.3s ease forwards;
+}
+#loading span:nth-child(3) {
+    animation: loading-first 0.2s 0.15s ease forwards, loading-end 0.2s 1.25s ease forwards;
+}
+#loading span:nth-child(4) {
+    animation: loading-first 0.2s 0.2s ease forwards, loading-end 0.2s 1.2s ease forwards;
+}
+#loading span:nth-child(5) {
+    animation: loading-first 0.2s 0.25s ease forwards, loading-end 0.2s 1.15s ease forwards;
+}
+#loading span:nth-child(6) {
+    animation: loading-first 0.2s 0.3s ease forwards, loading-end 0.2s 1.1s ease forwards;
+}
+#loading span:nth-child(7) {
+    animation: loading-first 0.2s 0.35s ease forwards, loading-end 0.2s 1s ease forwards;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 25px;
+}
+#slogan {
+    margin: 25px;
+    font-size: 85px;
+    width: 50%;
+    font-weight: bold;
+}
+#logo-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+#key-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+}
+.key-animation-wrapper {
+    transform: translateX(100%);
+    width: 90%;
+
+    animation: key-swipe 0.3s ease forwards;
+}
+.key-animation-wrapper-second {
+    transform: translateX(100%);
+    width: 100%;
+
+    animation: key-swipe 0.3s ease forwards;
+}
+.key-player {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 130px;
+    border-radius: 10px 0 0 10px;
+    transition: 0.2s ease-in-out;
+}
+.key-player:hover {
+    cursor: pointer;
+    transform: translateX(7%);
+}
+.key-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 30px;
+    width: 70px;
+    height: 70px;
+    background: rgba(0,0,0,0.1);
+}
+#secondary-keys {
+    width: 58%;
+    height: 415px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    margin-bottom: 150px;
+}
+#secondary-key {
+    background-color: #0D0D0D;
+}
+
+@keyframes loading-first {
+    0% {transform: translateY(100%);}
+    100% {transform: translateY(0);}
+}
+
+@keyframes loading-end {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100%);}
+}
+
+@keyframes background-swipe-1 {
+    0% {transform: translateY(100%);}
+    100% {transform: translateY(0);}
+}
+
+@keyframes background-swipe-2 {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100%);}
+}
+
+@keyframes background-swipe-3 {
+    0% {transform: translateY(-100%);}
+    100% {transform: translateY(-200%);}
+}
+
+@keyframes key-swipe {
+    0% {transform: translateX(100%);}
+    100% {transform: translateX(0);}
+}
